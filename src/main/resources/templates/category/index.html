@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh Sách Category</title>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <div>
+        <form th:action="@{/categories}" method="get">
+            <input type="text" name="keyword" placeholder="Tìm kiếm..." th:value="${keyword}" />
+            <button type="submit">Tìm kiếm</button>
+        </form>
+        <table>
+            <tr>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Chức năng</th>
+            </tr>
+            <tr th:each="category : ${categoryList}">
+                <td th:text="${category.name}"></td>
+                <td th:text="${category.description}"></td>
+                <td>
+                    <a th:href="@{'/categories/edit/' + ${category.id}}">Sửa</a>
+                    <a th:href="@{'/categories/delete/' + ${category.id}}">Xóa</a>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <span>Trang hiện tại: <span th:text="${currentPage}"></span> trên <span th:text="${totalPages}"></span></span>
+        </div>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

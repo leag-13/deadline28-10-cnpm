@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm Category Mới</title>
+</head>
+<body>
+    <header th:replace="fragments/header :: header"></header>
+    <h2>Thêm Category Mới</h2>
+    <form th:action="@{/categories/save}" th:object="${category}" method="post">
+        <label for="name">Tên</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <label for="description">Mô tả</label>
+        <input type="text" id="description" th:field="*{description}" required />
+        <button type="submit">Lưu</button>
+    </form>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
